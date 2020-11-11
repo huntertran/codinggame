@@ -1,3 +1,5 @@
+# https://www.codingame.com/ide/puzzle/shadows-of-the-knight-episode-1
+
 import sys
 import math
 
@@ -41,59 +43,25 @@ while True:
     jump_x = 0
     jump_y = 0
 
-    if bomb_dir == "U":
+    if "U" in bomb_dir:
         max_y = y
-        jump_x = 0
         jump_y = 0 - get_reversed_middle_pos(min_y, y)
     
-    if bomb_dir == "UR":
-        min_x = x
-        max_y = y
-        jump_x = get_middle_pos(max_x, x)
-        jump_y = 0 - get_reversed_middle_pos(min_y, y)
-
-    if bomb_dir == "R":
-        min_x = x
-        jump_x = get_middle_pos(max_x, x)
-        jump_y = 0
-
-    if bomb_dir == "DR":
-        min_x = x
+    if "D" in bomb_dir:
         min_y = y
-        jump_x = get_middle_pos(max_x, x)
         jump_y = get_middle_pos(max_y, y)
 
-    if bomb_dir == "D":
-        min_y = y
-        jump_x = 0
-        jump_y = get_middle_pos(max_y, y)
-
-
-    if bomb_dir == "DL":
-        max_x = x
-        min_y = y
-        jump_x = 0 - get_reversed_middle_pos(min_x, x)
-        jump_y = get_middle_pos(max_y, y)
-
-
-    if bomb_dir == "L":
+    if "L" in bomb_dir:
         max_x = x
         jump_x = 0 - get_reversed_middle_pos(min_x, x)
-        jump_y = 0
 
-
-    if bomb_dir == "UL":
-        max_x = x
-        max_y = y
-        jump_x = 0 - get_reversed_middle_pos(min_x, x)
-        jump_y = 0 - get_reversed_middle_pos(min_y, y)
+    if "R" in bomb_dir:
+        min_x = x
+        jump_x = get_middle_pos(max_x, x)
 
 
     x = x + jump_x
     y = y + jump_y
-
-    print("min X Y: " + str(min_x) + " " + str(min_y), file=sys.stderr, flush=True)
-    print("max X Y: " + str(max_x) + " " + str(max_y), file=sys.stderr, flush=True)
 
     # the location of the next window Batman should jump to.
     print(str(x) + " " + str(y))
